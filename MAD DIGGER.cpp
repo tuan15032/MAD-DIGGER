@@ -56,7 +56,7 @@ bool gold_map2[ROW+4][COL+2];
 // Khởi tạo tài nguyên
 void generate_gold_map()
 {
-    ifstream file ("C:\\Tuan\\My project\\Mad Digger\\MAP\\Goldmap1.txt") ;
+    ifstream file ("MAP\\Goldmap1.txt") ;
     int m=0 , n=0 ;
     while (file >> gold_map1[n][m]) {
         m++; // tăng chỉ số cột
@@ -107,50 +107,50 @@ SDL_Texture* tx (string s , SDL_Renderer * renderer)
 }
 
 // Load background texture
-SDL_Texture * background = tx("C:\\Tuan\\My project\\Mad Digger\\Background\\background.png",renderer) ;
+SDL_Texture * background = tx("Background\\background.png",renderer) ;
 
 // Load GameOver texture
-SDL_Texture * menu = tx("C:\\Tuan\\My project\\Mad Digger\\Background\\Menu.png",renderer) ;
+SDL_Texture * menu = tx("Background\\Menu.png",renderer) ;
 
 // Load Win texture
-SDL_Texture * Win = tx("C:\\Tuan\\My project\\Mad Digger\\End\\Win.png",renderer) ;
+SDL_Texture * Win = tx("End\\Win.png",renderer) ;
 
 // Load background texture
-SDL_Texture * Coin = tx("C:\\Tuan\\My project\\Mad Digger\\MAP\\Coin.png",renderer) ;
+SDL_Texture * Coin = tx("MAP\\Coin.png",renderer) ;
 
 // Load GameOver texture
-SDL_Texture * gameover = tx("C:\\Tuan\\My project\\Mad Digger\\End\\GameOver.png",renderer) ;
+SDL_Texture * gameover = tx("End\\GameOver.png",renderer) ;
 
 // Load small image texture
-SDL_Texture * Land = tx("C:\\Tuan\\My project\\Mad Digger\\MAP\\Land.png",renderer) ;
+SDL_Texture * Land = tx("MAP\\Land.png",renderer) ;
 
 // Load Lava texture
-SDL_Texture * Lava = tx("C:\\Tuan\\My project\\Mad Digger\\MAP\\Lava.png",renderer) ;
+SDL_Texture * Lava = tx("MAP\\Lava.png",renderer) ;
 
 // Load Move texture
-SDL_Texture * UP = tx("C:\\Tuan\\My project\\Mad Digger\\Move\\UP.png",renderer) ;
-SDL_Texture * DOWN = tx("C:\\Tuan\\My project\\Mad Digger\\Move\\DOWN.png",renderer) ;
-SDL_Texture * LEFT = tx("C:\\Tuan\\My project\\Mad Digger\\Move\\LEFT.png",renderer) ;
-SDL_Texture * RIGHT = tx("C:\\Tuan\\My project\\Mad Digger\\Move\\RIGHT.png",renderer) ;
+SDL_Texture * UP = tx("Move\\UP.png",renderer) ;
+SDL_Texture * DOWN = tx("Move\\DOWN.png",renderer) ;
+SDL_Texture * LEFT = tx("Move\\LEFT.png",renderer) ;
+SDL_Texture * RIGHT = tx("Move\\RIGHT.png",renderer) ;
 
 // Load ROCK texture
-SDL_Texture * ROCK = tx("C:\\Tuan\\My project\\Mad Digger\\MAP\\ROCK.png",renderer) ;
-SDL_Texture * ROCK1 = tx("C:\\Tuan\\My project\\Mad Digger\\MAP\\ROCK1.png",renderer) ;
-SDL_Texture * ROCK2 = tx("C:\\Tuan\\My project\\Mad Digger\\MAP\\ROCK2.png",renderer) ;
+SDL_Texture * ROCK = tx("MAP\\ROCK.png",renderer) ;
+SDL_Texture * ROCK1 = tx("MAP\\ROCK1.png",renderer) ;
+SDL_Texture * ROCK2 = tx("MAP\\ROCK2.png",renderer) ;
 
 // Load Fire texture
-SDL_Texture * Fire = tx("C:\\Tuan\\My project\\Mad Digger\\MAP\\Fire.png",renderer) ;
+SDL_Texture * Fire = tx("MAP\\Fire.png",renderer) ;
 
 // Load Break texture
-SDL_Texture * one = tx("C:\\Tuan\\My project\\Mad Digger\\Space\\1.png",renderer) ;
-SDL_Texture * two = tx("C:\\Tuan\\My project\\Mad Digger\\Space\\2.png",renderer) ;
-SDL_Texture * three = tx("C:\\Tuan\\My project\\Mad Digger\\Space\\3.png",renderer) ;
-SDL_Texture * four = tx("C:\\Tuan\\My project\\Mad Digger\\Space\\4.png",renderer) ;
+SDL_Texture * one = tx("Space\\1.png",renderer) ;
+SDL_Texture * two = tx("Space\\2.png",renderer) ;
+SDL_Texture * three = tx("Space\\3.png",renderer) ;
+SDL_Texture * four = tx("Space\\4.png",renderer) ;
 
 // Load Instruction texture
-SDL_Texture * Ins1 = tx("C:\\Tuan\\My project\\Mad Digger\\Instruction\\Instruction1.png",renderer) ;
-SDL_Texture * Ins2 = tx("C:\\Tuan\\My project\\Mad Digger\\Instruction\\Instruction2.png",renderer) ;
-SDL_Texture * Ins3 = tx("C:\\Tuan\\My project\\Mad Digger\\Instruction\\Instruction3.png",renderer) ;
+SDL_Texture * Ins1 = tx("Instruction\\Instruction1.png",renderer) ;
+SDL_Texture * Ins2 = tx("Instruction\\Instruction2.png",renderer) ;
+SDL_Texture * Ins3 = tx("Instruction\\Instruction3.png",renderer) ;
 
 // Load Monster texture
 SDL_Texture * Monster = tx("Monster.png",renderer) ;
