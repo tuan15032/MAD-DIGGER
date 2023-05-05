@@ -1,2 +1,7 @@
 # Auto detect text files and perform LF normalization
 * text=auto
+C://Tuan//My[[:space:]]project//Mad[[:space:]]Digger//SDL2_ttf.dll filter=lfs diff=lfs merge=lfs -text
+C:/Tuan/My[[:space:]]project/Mad[[:space:]]Digger/SDL2_ttf.dll filter=lfs diff=lfs merge=lfs -text
+C://Tuan//My[[:space:]]project//Mad[[:space:]]Digger//SDL2_ttf.dll filter=lfs diff=lfs merge=lfs -text
+C://Tuan//My[[:space:]]project//Mad[[:space:]]Digger//SDL2_ttf.dll filter=lfs diff=lfs merge=lfs -text
+C:/Users/nguye/OneDrive/Documents/GitHub/MAD-DIGGER/SDL2_ttf.dll filter=lfs diff=lfs merge=lfs -text
