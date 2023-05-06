@@ -2,9 +2,10 @@
 #include <SDL.h>
 #include <SDL_image.h>
 #include <SDL_ttf.h>
+#include <SDL_mixer.h>
 #include <string>
 #include <fstream>
-
+#include <stdio.h>
 using namespace std ;
 
 // Kích thước của ảnh nhỏ
@@ -178,6 +179,7 @@ void printcd()
     SDL_DestroyTexture(cd);
 }
 
+
 void printsc()
 {
     // Tạo phông
@@ -289,7 +291,6 @@ void Load_break(SDL_Texture * st)
         // Tạm dừng 100ms trước khi vẽ frame tiếp theo
         SDL_Delay(10);
     }
-
 }
 
 void Load_mover(SDL_Texture * st)
@@ -469,6 +470,8 @@ void Destroy ()
     SDL_DestroyWindow(window);
 }
 
+Mix_Chunk * Over , *Gain ;
+
 void Gameplay ()
 {
     SDL_RenderClear(renderer) ;
@@ -501,8 +504,10 @@ void Gameplay ()
             SDL_RenderCopy(renderer, gameover, NULL, NULL);
             // Cập nhật renderer
             SDL_RenderPresent(renderer);
-            SDL_Delay(2000) ;
-            //quit=true ;
+            Mix_PlayChannel(-1, Over, 0);
+            while (Mix_Playing(-1) != 0) {
+                // Chờ...
+            }
             return ;
         }
         if (elapsed_time < 1000) {
@@ -531,17 +536,24 @@ void Gameplay ()
                     print1(funcion()) ;
                     // Cập nhật renderer
                     SDL_RenderPresent(renderer);
+                    Mix_PlayChannel(-1, Gain, 0);
+                    while (Mix_Playing(-1) != 0) {
+                        // Chờ...
+                    }
                 }
                 if (gold_map1[x][y]==-1)
                 {
-                    //quit = true ;
+
                     SDL_Rect statusRect ={characterX, characterY, 49, 49};
                     SDL_RenderCopy(renderer, Fire, NULL, &statusRect);
                     SDL_RenderCopy(renderer, gameover, NULL, NULL);
                     printcd() ;
                     // Cập nhật renderer
                     SDL_RenderPresent(renderer);
-                    SDL_Delay(5000) ;
+                    Mix_PlayChannel(-1, Over, 0);
+                    while (Mix_Playing(-1) != 0) {
+                        // Chờ...
+                    }
                     return ;
                 }
                 if (gold_found==10)
@@ -717,13 +729,20 @@ void Menu()
 int main(int argc, char* argv[]){
 
     // Khởi tạo SDL2
-    SDL_Init(SDL_INIT_VIDEO);
+    SDL_Init(SDL_INIT_EVERYTHING);
     IMG_Init(IMG_INIT_PNG);
     TTF_Init();
 
+    Mix_OpenAudio(44100, MIX_DEFAULT_FORMAT, 2, 2048);
+
+    Over = Mix_LoadWAV("GameOver.wav");
+    Gain = Mix_LoadWAV("GainCoin.wav");
+
     Menu() ;
 
+    Mix_FreeChunk(Over);
     Destroy();
+    Mix_CloseAudio();
     TTF_Quit();
     IMG_Quit();
     SDL_Quit();
