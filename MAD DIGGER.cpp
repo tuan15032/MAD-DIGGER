@@ -470,7 +470,7 @@ void Destroy ()
     SDL_DestroyWindow(window);
 }
 
-Mix_Chunk * Over , *Gain ;
+Mix_Chunk * Over , *Gain , *win;
 
 void Gameplay ()
 {
@@ -537,9 +537,6 @@ void Gameplay ()
                     // Cập nhật renderer
                     SDL_RenderPresent(renderer);
                     Mix_PlayChannel(-1, Gain, 0);
-                    while (Mix_Playing(-1) != 0) {
-                        // Chờ...
-                    }
                 }
                 if (gold_map1[x][y]==-1)
                 {
@@ -552,31 +549,28 @@ void Gameplay ()
                     SDL_RenderPresent(renderer);
                     Mix_PlayChannel(-1, Over, 0);
                     while (Mix_Playing(-1) != 0) {
-                        // Chờ...
                     }
                     return ;
                 }
                 if (gold_found==10)
                 {
-                    //quit = true ;
                     SDL_Delay(1000);
                     SDL_RenderCopy(renderer, Win, NULL, NULL);
                     // Cập nhật renderer
                     SDL_RenderPresent(renderer);
-                    SDL_Delay(5000) ;
+                    Mix_PlayChannel(-1, win, 0);
+                    while (Mix_Playing(-1) != 0) {
                     return  ;
+                    }
                 }
-                // Xóa Renderer
-                SDL_RenderClear(renderer) ;
             }
         }
-    }
         // Xóa Renderer
         SDL_RenderClear(renderer) ;
     }
     // Xóa Renderer
-
     SDL_RenderClear(renderer) ;
+}
 }
 
 SDL_Texture * ins = Ins1 ;
@@ -737,7 +731,7 @@ int main(int argc, char* argv[]){
 
     Over = Mix_LoadWAV("GameOver.wav");
     Gain = Mix_LoadWAV("GainCoin.wav");
-
+    win = Mix_LoadWAV("win.wav");
     Menu() ;
 
     Mix_FreeChunk(Over);
