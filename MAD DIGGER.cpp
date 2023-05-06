@@ -5,7 +5,7 @@
 #include <SDL_mixer.h>
 #include <string>
 #include <fstream>
-#include <stdio.h>
+
 using namespace std ;
 
 // Kích thước của ảnh nhỏ
