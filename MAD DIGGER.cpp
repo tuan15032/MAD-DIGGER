@@ -29,10 +29,6 @@ const int BACKGROUND_HEIGHT = 539 ;
 int characterX = 441 ;
 int characterY = 98 ;
 
-// Tọa độ Monster trên mảng
-int MonsterX ;
-int MonsterY ;
-
 // Kích thước mảng
 const int ROW = 8;
 const int COL = 19;
@@ -98,7 +94,7 @@ void generate_gold_map()
 SDL_Window* window = SDL_CreateWindow("MAD DIGGER", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, BACKGROUND_WIDTH, BACKGROUND_HEIGHT, SDL_WINDOW_SHOWN);
 SDL_Renderer* renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED);
 
-// Tạo texture
+// Hàm Load texture
 SDL_Texture* tx (string s , SDL_Renderer * renderer)
 {
     SDL_Surface* sf = IMG_Load(s.c_str()) ;
@@ -122,7 +118,7 @@ SDL_Texture * Coin = tx("MAP\\Coin.png",renderer) ;
 // Load GameOver texture
 SDL_Texture * gameover = tx("End\\GameOver.png",renderer) ;
 
-// Load small image texture
+// Load Land texture
 SDL_Texture * Land = tx("MAP\\Land.png",renderer) ;
 
 // Load Lava texture
@@ -158,9 +154,6 @@ SDL_Texture * Monster = tx("Monster.png",renderer) ;
 
 // Khai báo biến đếm ngược
 int countdown = 61;
-
-// Khai báo biến thời gian
-Uint32 last_time = SDL_GetTicks();
 
 void printcd()
 {
@@ -253,6 +246,26 @@ SDL_Texture * funcion ()
     return DOWN ;
 }
 
+void Load_break(SDL_Texture * st)
+{
+    for ( int i = 0 ; i<7 ; i++)
+    {
+        SDL_RenderClear(renderer);
+        // Vẽ frame hiện tại lên màn hình
+        SDL_Rect frameRect = {i*120, 0, 120, 120};
+        SDL_Rect Rect1 = {characterX, characterY , 49, 49};
+        SDL_RenderCopy(renderer, background , NULL, NULL);
+        printcd() ;
+        printsc() ;
+        print2() ;
+        SDL_RenderCopy(renderer, st, &frameRect, &Rect1);
+        // Hiển thị lên màn hình
+        SDL_RenderPresent(renderer);
+        // Tạm dừng 100ms trước khi vẽ frame tiếp theo
+        if (i!=6) SDL_Delay(10);
+    }
+}
+
 void Update (SDL_Rect & Rect1)
 {
     switch (status)
@@ -272,32 +285,10 @@ void Update (SDL_Rect & Rect1)
     }
 }
 
-void Load_break(SDL_Texture * st)
-{
-    for ( int i = 0 ; i<7 ; i++)
-    {
-        // Xóa màn hình
-        SDL_RenderClear(renderer);
-        // Vẽ frame hiện tại lên màn hình
-        SDL_Rect frameRect = {i*120, 0, 120, 120};
-        SDL_Rect Rect1 = {characterX, characterY , 49, 49};
-        SDL_RenderCopy(renderer, background , NULL, NULL);
-        printcd() ;
-        printsc() ;
-        print2() ;
-        SDL_RenderCopy(renderer, st, &frameRect, &Rect1);
-        // Hiển thị lên màn hình
-        SDL_RenderPresent(renderer);
-        // Tạm dừng 100ms trước khi vẽ frame tiếp theo
-        SDL_Delay(10);
-    }
-}
-
 void Load_mover(SDL_Texture * st)
 {
     for ( int i = 0 ; i<7 ; i++)
     {
-        // Xóa màn hình
         SDL_RenderClear(renderer);
         // Vẽ frame hiện tại lên màn hình
         SDL_Rect frameRect = {i*120, 0, 120, 120};
@@ -311,9 +302,8 @@ void Load_mover(SDL_Texture * st)
         // Hiển thị lên màn hình
         SDL_RenderPresent(renderer);
         // Tạm dừng 100ms trước khi vẽ frame tiếp theo
-        SDL_Delay(10);
+        if (i!=6) SDL_Delay(10);
     }
-
 }
 
 SDL_Event event;
@@ -450,11 +440,6 @@ void moverplayer ()
                     }
                     Load_break(three) ;
                     break ;
-                default :
-                printcd() ;
-                print2() ;
-                print1(funcion()) ;
-                break ;
                 }
             }
             break ;
@@ -551,6 +536,9 @@ void Destroy ()
     SDL_DestroyWindow(window);
 }
 
+// Khai báo biến thời gian
+Uint32 last_time = SDL_GetTicks();
+
 void Gameplay ()
 {
     SDL_RenderClear(renderer) ;
@@ -581,71 +569,64 @@ void Gameplay ()
             print2() ;
             print1(funcion()) ;
             SDL_RenderCopy(renderer, gameover, NULL, NULL);
-            // Cập nhật renderer
             SDL_RenderPresent(renderer);
             Mix_PlayChannel(-1, Over, 0);
             SDL_Delay(2000);
             return ;
         }
         if (elapsed_time < 1000) {
-        // Xử lý sự kiện
-        while(SDL_PollEvent(&event)) {
-            if (event.type == SDL_QUIT) {
-                 Destroy();
-            } else if (event.type == SDL_KEYDOWN) {
-                SDL_RenderCopy(renderer, background, NULL, NULL);
-                printsc() ;
-                printcd() ;
-                // Vòng lặp in ảnh trên background
-                moverplayer();
-                // Cập nhật renderer
-                SDL_RenderPresent(renderer);
-                if (gold_map1[x][y]==2)
-                {
-                    gold_found++ ;
-                    gold_map1[x][y]=1 ;
-                    // Xóa Renderer
-                    SDL_RenderClear(renderer) ;
+            // Xử lý sự kiện
+            while(SDL_PollEvent(&event)) {
+                if (event.type == SDL_QUIT) {
+                    Destroy();
+                } else if (event.type == SDL_KEYDOWN) {
                     SDL_RenderCopy(renderer, background, NULL, NULL);
-                    printcd() ;
                     printsc() ;
-                    print2() ;
-                    print1(funcion()) ;
-                    // Cập nhật renderer
-                    SDL_RenderPresent(renderer);
-                    Mix_PlayChannel(-1, Gain, 0);
-                }
-                if (gold_map1[x][y]==-1)
-                {
-
-                    SDL_Rect statusRect ={characterX, characterY, 49, 49};
-                    SDL_RenderCopy(renderer, Fire, NULL, &statusRect);
-                    SDL_RenderCopy(renderer, gameover, NULL, NULL);
                     printcd() ;
-                    // Cập nhật renderer
+                    // Di chuyển
+                    moverplayer();
                     SDL_RenderPresent(renderer);
-                    Mix_PlayChannel(-1, Over, 0);
-                    SDL_Delay(2000);
-                    return ;
-                }
-                if (gold_found==10)
-                {
-                    SDL_Delay(1000);
-                    SDL_RenderCopy(renderer, Win, NULL, NULL);
-                    // Cập nhật renderer
-                    SDL_RenderPresent(renderer);
-                    Mix_PlayChannel(-1, win, 0);
-                    SDL_Delay(2000);
-                    return ;
+                    if (gold_map1[x][y]==2)
+                    {
+                        gold_found++ ;
+                        gold_map1[x][y]=1 ;
+                        SDL_RenderClear(renderer) ;
+                        SDL_RenderCopy(renderer, background, NULL, NULL);
+                        printcd() ;
+                        printsc() ;
+                        print2() ;
+                        print1(funcion()) ;
+                        SDL_RenderPresent(renderer);
+                        Mix_PlayChannel(-1, Gain, 0);
+                    }
+                    if (gold_map1[x][y]==-1)
+                    {
+                        SDL_Rect statusRect ={characterX, characterY, 49, 49};
+                        SDL_RenderCopy(renderer, Fire, NULL, &statusRect);
+                        SDL_RenderCopy(renderer, gameover, NULL, NULL);
+                        printcd() ;
+                        // Cập nhật renderer
+                        SDL_RenderPresent(renderer);
+                        Mix_PlayChannel(-1, Over, 0);
+                        SDL_Delay(2000);
+                        return ;
+                    }
+                    if (gold_found==10)
+                    {
+                        SDL_Delay(1000);
+                        SDL_RenderCopy(renderer, Win, NULL, NULL);
+                        // Cập nhật renderer
+                        SDL_RenderPresent(renderer);
+                        Mix_PlayChannel(-1, win, 0);
+                        SDL_Delay(2000);
+                        return ;
+                    }
                 }
             }
+            SDL_RenderClear(renderer) ;
         }
-        // Xóa Renderer
         SDL_RenderClear(renderer) ;
     }
-    // Xóa Renderer
-    SDL_RenderClear(renderer) ;
-}
 }
 
 SDL_Texture * ins = Ins1 ;
@@ -814,11 +795,7 @@ int main(int argc, char* argv[]){
 
     Mix_PlayChannel(-1, Game, -1);
 
-    bool shouldStop = false ;
-    while (!shouldStop) {
-        Menu() ;
-        shouldStop = true ;
-    }
+    Menu() ;
 
     Destroy();
     Mix_CloseAudio();
