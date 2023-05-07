@@ -20,8 +20,8 @@ Lưu ý :
  
 Game chạy trên Windows và phù hợp vs máy 64bit 
 
-Để biết thêm chi tiết về code của mình thì bạn hãy đọc qua file docx mà mình đã giải thích chi tiết ở trên 
+Để biết thêm chi tiết về code của mình thì bạn hãy đọc qua file docx mà mình đã giải thích chi tiết ở trên. 
 
-Chúc bạn có trải nghiệm thú vị 
+Chúc bạn có trải nghiệm thú vị! 
 
  
