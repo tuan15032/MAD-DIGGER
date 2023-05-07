@@ -11,6 +11,17 @@ GAME đầu tiên của NT tự làm ra
 
 ![Instruction2](https://user-images.githubusercontent.com/123071344/236668369-6104bd7a-876c-4673-a5db-24ddb9552b42.png)
 
+Cách cài đặt 
 
+B1 : Download file ZIP và giải nén file 
+B2 : Chỉ cần chạy file MAD DIGGER.exe là bạn đã có thể trải nghiệm game của mình 
+
+Lưu ý : 
+ 
+Game chạy trên Windows và phù hợp vs máy 64bit 
+
+Để biết thêm chi tiết về code của mình thì bạn hãy đọc qua file docx mà mình đã giải thích chi tiết ở trên 
+
+Chúc bạn có trải nghiệm thú vị 
 
  
