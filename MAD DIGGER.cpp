@@ -317,6 +317,7 @@ void Load_mover(SDL_Texture * st)
 }
 
 SDL_Event event;
+Mix_Chunk * Over , * Gain , * win , * rock , * br , * mine , *Game;
 
 // Di chuyển của nhân vật
 void moverplayer ()
@@ -329,60 +330,134 @@ void moverplayer ()
                     if (gold_map2[x - 1][y] == true && gold_map1[x - 1][y] == 2) {
                         gold_map1[x - 1][y] = 0 ;
                         NUM_GOLD-- ;
+                        Mix_PlayChannel(-1, br, 0);
                     }
-                    if (gold_map1[x - 1][y]==1 || gold_map1[x - 1][y]==3 || gold_map1[x - 1][y]==7 || gold_map1[x - 1][y]==2) {
+                    if ((gold_map1[x - 1][y]==3 || gold_map1[x - 1][y]==7) && gold_map2[x - 1][y]!=true) {
                         gold_map2[x - 1][y] = true;
+                        Mix_PlayChannel(-1, rock, 0);
                     }
-                    if (gold_map1[x - 1][y]==7) gold_map1[x - 1][y]=2 ;
-                    if (gold_map1[x - 1][y]==8) gold_map1[x - 1][y]=7 ;
-                    if (gold_map1[x - 1][y]==4) gold_map1[x - 1][y]=3 ;
+                    if ((gold_map1[x - 1][y]==1 || gold_map1[x - 1][y]==2) && gold_map2[x - 1][y]!=true) {
+                        gold_map2[x - 1][y] = true;
+                        Mix_PlayChannel(-1, mine, 0);
+                    }
+                    if (gold_map1[x - 1][y]==7)
+                    {
+                        gold_map1[x - 1][y]=2 ;
+                        Mix_PlayChannel(-1, rock, 0);
+                    }
+                    if (gold_map1[x - 1][y]==8)
+                    {
+                        gold_map1[x - 1][y]=7 ;
+                        Mix_PlayChannel(-1, rock, 0);
+                    }
+                    if (gold_map1[x - 1][y]==4)
+                    {
+                        gold_map1[x - 1][y]=3 ;
+                        Mix_PlayChannel(-1, rock, 0);
+                    }
                     Load_break(two) ;
-                break ;
+                    break ;
                 case 's' :
                     if (gold_map2[x + 1][y] == true && gold_map1[x + 1][y] == 2) {
                         gold_map1[x + 1][y] = 0 ;
                         NUM_GOLD-- ;
+                        Mix_PlayChannel(-1, br, 0);
                     }
-                    if (gold_map1[x + 1][y]==1 || gold_map1[x + 1][y]==3 || gold_map1[x + 1][y]==7 || gold_map1[x + 1][y]==2) {
+                    if ((gold_map1[x + 1][y]==3 || gold_map1[x + 1][y]==7) && gold_map2[x + 1][y]!=true) {
                         gold_map2[x + 1][y] = true;
+                        Mix_PlayChannel(-1, rock, 0);
                     }
-                    if (gold_map1[x + 1][y]==7) gold_map1[x + 1][y]=2 ;
-                    if (gold_map1[x + 1][y]==8) gold_map1[x + 1][y]=7 ;
-                    if (gold_map1[x + 1][y]==4) gold_map1[x + 1][y]=3 ;
+                    if ((gold_map1[x + 1][y]==1 || gold_map1[x + 1][y]==2) && gold_map2[x + 1][y]!=true) {
+                        gold_map2[x + 1][y] = true;
+                        Mix_PlayChannel(-1, mine, 0);
+                    }
+                    if (gold_map1[x + 1][y]==7)
+                    {
+                        gold_map1[x + 1][y]=2 ;
+                        Mix_PlayChannel(-1, rock, 0);
+                    }
+                    if (gold_map1[x + 1][y]==8)
+                    {
+                        gold_map1[x + 1][y]=7 ;
+                        Mix_PlayChannel(-1, rock, 0);
+                    }
+                    if (gold_map1[x + 1][y]==4)
+                    {
+                        gold_map1[x + 1][y]=3 ;
+                        Mix_PlayChannel(-1, rock, 0);
+                    }
                     Load_break(one) ;
-                break ;
+                    break ;
                 case 'a' :
                     if (gold_map2[x][y - 1] == true && gold_map1[x][y - 1] == 2 ) {
                         gold_map1[x][y - 1] = 0 ;
                         NUM_GOLD-- ;
+                        Mix_PlayChannel(-1, br, 0);
                     }
-                    if (gold_map1[x][y - 1]==1 || gold_map1[x][y - 1]==3 || gold_map1[x][y - 1]==7 || gold_map1[x][y - 1]==2) {
+                    if ((gold_map1[x][y - 1]==3 || gold_map1[x][y - 1]==7)&& gold_map2[x][y - 1]!=true) {
                         gold_map2[x][y - 1] = true;
+                        Mix_PlayChannel(-1, rock, 0);
                     }
-                    if (gold_map1[x][y - 1]==7) gold_map1[x][y - 1]=2 ;
-                    if (gold_map1[x][y - 1]==8) gold_map1[x][y - 1]=7 ;
-                    if (gold_map1[x][y - 1]==4) gold_map1[x][y - 1]=3 ;
+                    if ((gold_map1[x][y - 1]==1 || gold_map1[x][y - 1]==2)&& gold_map2[x][y - 1]!=true) {
+                        gold_map2[x][y - 1] = true;
+                        Mix_PlayChannel(-1, mine, 0);
+                    }
+                    if (gold_map1[x][y - 1]==7)
+                    {
+                        gold_map1[x][y - 1]=2 ;
+                        Mix_PlayChannel(-1, rock, 0);
+                    }
+                    if (gold_map1[x][y - 1]==8)
+                    {
+                        gold_map1[x][y - 1]=7 ;
+                        Mix_PlayChannel(-1, rock, 0);
+                    }
+                    if (gold_map1[x][y - 1]==4)
+                    {
+                        gold_map1[x][y - 1]=3 ;
+                        Mix_PlayChannel(-1, rock, 0);
+                    }
                     Load_break(four) ;
-                break ;
+                    break ;
                 case 'd':
                     if (gold_map2[x][y + 1] == true && gold_map1[x][y + 1] == 2) {
                         gold_map1[x][y + 1] = 0 ;
                         NUM_GOLD-- ;
+                        Mix_PlayChannel(-1, br, 0);
                     }
-                    if (gold_map1[x][y + 1]==1 || gold_map1[x][y + 1]==3 || gold_map1[x][y + 1]==7 || gold_map1[x][y + 1]==2) {
+                    if ((gold_map1[x][y + 1]==3 || gold_map1[x][y + 1]==7) && gold_map2[x][y + 1]!=true) {
                         gold_map2[x][y + 1] = true;
+                        Mix_PlayChannel(-1, rock, 0);
                     }
-                    if (gold_map1[x][y + 1]==7) gold_map1[x][y + 1]=2 ;
-                    if (gold_map1[x][y + 1]==8) gold_map1[x][y + 1]=7 ;
-                    if (gold_map1[x][y + 1]==4) gold_map1[x][y + 1]=3 ;
+                    if ((gold_map1[x][y + 1]==1 || gold_map1[x][y + 1]==2) && gold_map2[x][y + 1]!=true) {
+                        gold_map2[x][y + 1] = true;
+                        Mix_PlayChannel(-1, mine, 0);
+                    }
+                    if (gold_map1[x][y + 1]==7)
+                    {
+                        gold_map1[x][y + 1]=2 ;
+                        Mix_PlayChannel(-1, rock, 0);
+                    }
+                    if (gold_map1[x][y + 1]==8)
+                    {
+                        gold_map1[x][y + 1]=7 ;
+                        Mix_PlayChannel(-1, rock, 0);
+                    }
+                    if (gold_map1[x][y + 1]==4)
+                    {
+                        gold_map1[x][y + 1]=3 ;
+                        Mix_PlayChannel(-1, rock, 0);
+                    }
                     Load_break(three) ;
+                    break ;
+                default :
+                printcd() ;
+                print2() ;
+                print1(funcion()) ;
                 break ;
+                }
             }
-            printcd() ;
-            print2() ;
-            print1(funcion()) ;
             break ;
-        }
         case SDLK_LEFT: {
             status = 'a' ;
             if (gold_map2[x][y-1] == true)
@@ -442,7 +517,13 @@ void moverplayer ()
 void Destroy ()
 {
     // Giải phóng bộ nhớ và đóng SDL
-
+    Mix_FreeChunk(Gain);
+    Mix_FreeChunk(win);
+    Mix_FreeChunk(mine);
+    Mix_FreeChunk(br);
+    Mix_FreeChunk(rock);
+    Mix_FreeChunk(Over);
+    Mix_FreeChunk(Game);
     SDL_DestroyTexture(background);
     SDL_DestroyTexture(menu);
     SDL_DestroyTexture(gameover);
@@ -469,8 +550,6 @@ void Destroy ()
     SDL_DestroyRenderer(renderer);
     SDL_DestroyWindow(window);
 }
-
-Mix_Chunk * Over , *Gain , *win;
 
 void Gameplay ()
 {
@@ -505,9 +584,7 @@ void Gameplay ()
             // Cập nhật renderer
             SDL_RenderPresent(renderer);
             Mix_PlayChannel(-1, Over, 0);
-            while (Mix_Playing(-1) != 0) {
-                // Chờ...
-            }
+            SDL_Delay(2000);
             return ;
         }
         if (elapsed_time < 1000) {
@@ -548,8 +625,7 @@ void Gameplay ()
                     // Cập nhật renderer
                     SDL_RenderPresent(renderer);
                     Mix_PlayChannel(-1, Over, 0);
-                    while (Mix_Playing(-1) != 0) {
-                    }
+                    SDL_Delay(2000);
                     return ;
                 }
                 if (gold_found==10)
@@ -559,9 +635,8 @@ void Gameplay ()
                     // Cập nhật renderer
                     SDL_RenderPresent(renderer);
                     Mix_PlayChannel(-1, win, 0);
-                    while (Mix_Playing(-1) != 0) {
-                    return  ;
-                    }
+                    SDL_Delay(2000);
+                    return ;
                 }
             }
         }
@@ -729,12 +804,22 @@ int main(int argc, char* argv[]){
 
     Mix_OpenAudio(44100, MIX_DEFAULT_FORMAT, 2, 2048);
 
-    Over = Mix_LoadWAV("GameOver.wav");
-    Gain = Mix_LoadWAV("GainCoin.wav");
-    win = Mix_LoadWAV("win.wav");
-    Menu() ;
+    Over = Mix_LoadWAV("Sound//GameOver.wav");
+    Gain = Mix_LoadWAV("Sound//GainCoin.wav");
+    win = Mix_LoadWAV("Sound//win.wav");
+    mine = Mix_LoadWAV("Sound//mine.wav");
+    br = Mix_LoadWAV("Sound//BreakCoin.wav");
+    rock = Mix_LoadWAV("Sound//ROCK.wav");
+    Game = Mix_LoadWAV("Sound//Game.wav");
 
-    Mix_FreeChunk(Over);
+    Mix_PlayChannel(-1, Game, -1);
+
+    bool shouldStop = false ;
+    while (!shouldStop) {
+        Menu() ;
+        shouldStop = true ;
+    }
+
     Destroy();
     Mix_CloseAudio();
     TTF_Quit();
