@@ -13,8 +13,8 @@ GAME đầu tiên của NT tự làm ra
 
 Cách cài đặt 
 
-B1 : Download file ZIP và giải nén file 
-B2 : Chỉ cần chạy file MAD DIGGER.exe là bạn đã có thể trải nghiệm game của mình 
+B1 : Download file ZIP và giải nén file.
+B2 : Chỉ cần chạy file MAD DIGGER.exe là bạn đã có thể trải nghiệm game của mình.
 
 Lưu ý : 
  
