@@ -7,8 +7,7 @@ Mình là Nguyễn Đức Anh Tuấn , sinh viên lớp K67CB , trường Đại
 
 # Ý TƯỞNG
 Ban đầu mình định làm game Đào Vàng trên điện thoại vì trước mình khá đam mê trò này 
-nhưng sau 1 thời gian mình thấy khả năng của mình không đủ và hình ảnh về game cũng không quá nhiều mình không thể làm tương tự,
-nên mình đã làm Đào Vàng phiên bản độc lạ Nguyễn Tuấn, game đòi hỏi người chơi phải nhanh tay và khéo léo mới thu thập đủ số vàng.
+nhưng sau 1 thời gian mình thấy thiếu tài nguyên như hình ảnh về chuyển động nhân vật nên mình đã làm Đào Vàng phiên bản độc lạ Nguyễn Tuấn, game đòi hỏi người chơi phải nhanh tay và khéo léo mới thu thập đủ số vàng.
 
 # CỐT TRUYỆN 
 
